@@ -1,0 +1,29 @@
+# Dependencies
+markdown:         rdiscount
+highlighter:      pygments
+
+#
+encoding:         "utf-8"
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Freedom
+tagline:          'Time is limited, To be a better girl'
+description:      'Hello,World!'
+url:              http://shelldone.com
+
+author:
+  name:           'ruiruiZhang'
+  url:            https://github.com/ruiruiZhang
+
+paginate:         5
+
+# Custom vars
+version:          1.0.0
+
+# duoshuo
+comments :
+    provider : duoshuo
+    duoshuo :
+      short_name : ruirui
