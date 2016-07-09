@@ -1,58 +1,77 @@
 ---
 layout: default
-title: Home
+category: about
+language: cn
+title: 陈真的个人主页
+description: 欢迎来到我的个人主页.
 ---
 
+<section class="about-me inner" itemscope itemtype="http://data-vocabulary.org/Person">
+  <div class="pull-right speak-french"></div>
 
+  <h1>
+    <div class="book-me">
+     <!-- <a class="btn btn-lg" href="/cn/">Chinese</a>-->
+    </div>
+    <span class="hello">
+      <span class="hello">既往不恋，纵情向前</span>.
+    </span>
+  </h1>
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <div class="post-heading">
-      <img src="/public/img/{{ post.author }}.jpg">
-      <h1 class="post-title">
-        <a class="post-title-home" href="{{ post.url }}">
-          {{ post.title }}
-        </a>
-      </h1>
-        <p class="post-info">
-        {% if post.author == "SooHu" %}
-          {{ post.author }}原创
-        {% else %}
-          转载{{ post.author }}
-        {% endif %}
-        </p>
-        <span class="post-info"><i class="fa fa-calendar"></i>&nbsp{{ post.date | date: "%Y" }}/{{ post.date | date: "%m" }}/{{ post.date | date: "%d" }}  </span>
-        <span class="post-info"><i class="fa fa-book"></i>&nbsp<a href="/category/index.html#{{ post.categories }}">{{ post.categories }}</a></span>
-        <span class="post-info"><i class="fa fa-tags"></i>&nbsp<a href="/tag/index.html#{{ post.tags | first }}">{{ post.tags | first }}</a></span>  
-        <span class="post-info"><a href="/tag/index.html#{{ post.tags[1] }}">{{ post.tags[1] }}</a></span>
-        <span class="post-info"><a href="/tag/index.html#{{ post.tags[2] }}">{{ post.tags[2] }}</a></span>
-    </div>
-    <div class="post-content">
-      {{ post.content | split:"<!-- more -->" | first  }}
-      <div class="readmore">
-        <a href="{{ post.url }}"><i class="fa fa-hand-o-right"></i>&nbsp阅读全文</a>
-      </div>
-    </div>
+  <blockquote>
+  <p>
+    In July 2017, I'll graduate from Yanshan University with a PhD degree. I will start a new journey of my life.
+  </p>
+  </blockquote>
+
+  <p>
+    I am <a href="/"><span itemprop="name">Zhen Chen</span></a>. I completed my bachelor's and master's degrees in Computer Application Technology at <a href="http://www.ysu.edu.cn/">Yanshan University</a> on July.1 2010 and July.1 2013 respectively. Now I am a 3nd year PhD. student in <a href="http://www.ysu.edu.cn"><strong>Yanshan University</strong></a>.
+  </p>
+
+  <p>
+    My research interests cover <strong>Service Computing</strong>, <strong>Recommender System</strong>, <strong>Web Development</strong>,
+    and <strong>Information Systemd Integration</strong>.
+  </p>
+
+  <p>
+    I'm a big fan of MAC, Git, Linux, Python, Django. In my free time, I dive into writing blog, translating english book about technology, reading books to improve myself.
+  </p>
+
+</section>
+
+<section class="inner">
+  <div class="post-recents-in-index">
+    <strong>最近博文</strong>
   </div>
-  {% endfor %}
-</div>
+  <blockquote>
+    <ul>
+      {% for post in site.posts limit:3 %}
+      <li class="post-list-in-index">
+      <small class="post-list-date-in-index">
+      {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
 
-<div class="pagination">
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="/">更新的博文</a>
-    {% else %}
-      <a class="pagination-item newer" href="/page{{paginator.previous_page}}">更新的博文</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">已经是最新的博文</span>
-  {% endif %}
+      <!-- Whitespace added for readability -->
+      {% assign d = post.date | date: "%d" %}
+      {% assign m = post.date | date: "%B" %}
 
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="/page{{paginator.next_page}}">更早的博文</a>
-  {% else %}
-    <span class="pagination-item older">已经是最后一页</span>
-  {% endif %}
-</div>
-
+      {% case m %}
+      {% when 'April' or 'May' or 'June' or 'July' %}{{ m }}
+      {% when 'September' %}Sept
+      {% else %}{{ post.date | date: "%b" }}
+      {% endcase %}
+      {% case d %}
+      {% when '01' or '21' or '31' %}{{ %d }}<!--st-->
+      {% when '02' or '22' %}{{ %d }}<!--nd-->
+      {% when '03' or '23' %}{{ %d }}<!--rd-->
+      {% else %}{{ %d }}<!--th-->
+      {% endcase %},
+      {{ post.date | date: "%Y" }}</small><a  href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </blockquote>
+  <!--<p>
+    Here's my <a href="{{ site.url }}/yuanyong_resume_cn.pdf"><strong>resume</strong></a>,
+    and <a href="/contact"><strong>contact me</strong></a>.</small>
+  </p>-->
+</section>
